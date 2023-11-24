@@ -36,9 +36,7 @@ class Forecastitems with ChangeNotifier {
       print(response.statusCode);
       _forecastdatas =
           ForecastWeatherModel.fromJson(json.decode(response.body));
-
       _isloading = false;
-
       notifyListeners();
     } else {
       if (kDebugMode) {

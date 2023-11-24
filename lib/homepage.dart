@@ -63,9 +63,9 @@ class _HomePageState extends State<HomePage> {
     final weatherdetails = Provider.of<Weatheritems>(context, listen: true);
     final forecastdetails = Provider.of<Forecastitems>(context, listen: true);
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-        Color.fromARGB(255, 82, 80, 80),
+        Color.fromARGB(255, 104, 102, 102),
         Color.fromARGB(255, 112, 108, 108),
         Color.fromARGB(255, 135, 130, 130),
         Color.fromARGB(255, 192, 184, 184)

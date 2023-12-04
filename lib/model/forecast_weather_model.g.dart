@@ -154,7 +154,10 @@ Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
     };
 
 Wind _$WindFromJson(Map<String, dynamic> json) => Wind(
-      speed: (json['speed'] as double).toDouble(),
+      speed: (json['speed'] is int)
+          ? (json['speed'] as int).toDouble()
+          : json['speed'],
+      // speed: (json['speed'] as double).toDouble(),
       deg: json['deg'] as int,
       gust: (json['gust'] as dynamic),
     );

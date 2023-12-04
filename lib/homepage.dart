@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // final double temperatureInFahrenheit = 85;
   @override
   void initState() {
     super.initState();
@@ -58,10 +59,17 @@ class _HomePageState extends State<HomePage> {
     return formattedDate;
   }
 
+  int convertToFahrenheit(double fahrenheit) {
+    return ((fahrenheit - 32) * 5 / 9).round();
+  }
+
   @override
   Widget build(BuildContext context) {
     final weatherdetails = Provider.of<Weatheritems>(context, listen: true);
     final forecastdetails = Provider.of<Forecastitems>(context, listen: true);
+    // String formattedTemperature =
+    //     formatFahrenheitToCelsius(temperatureInFahrenheit);
+
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -77,7 +85,7 @@ class _HomePageState extends State<HomePage> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : Container(
+            : SizedBox(
                 height: double.infinity,
                 width: double.infinity,
                 // decoration: const BoxDecoration(
@@ -100,9 +108,9 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: Text(
-                              "${weatherdetails.weatherdatas!.main.temp}\u00B0c",
+                              "${convertToFahrenheit(weatherdetails.weatherdatas!.main.temp)}\u00B0c",
                               style: const TextStyle(
-                                  fontSize: 28, fontWeight: FontWeight.bold),
+                                  fontSize: 25, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
@@ -133,13 +141,15 @@ class _HomePageState extends State<HomePage> {
                     //),
                     //),
                     const SizedBox(height: 5),
+
                     Text(
                       "${formatDate2(timeZoneToTime(weatherdetails.weatherdatas!.timezone))} , ${formatDate(unpackDate(weatherdetails.weatherdatas!.dt))}",
-
-                      //"${(timeZoneToTime(weatherdetails.weatherdatas!.timezone))}",
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w400),
                     ),
+
+                    // //"${(timeZoneToTime(weatherdetails.weatherdatas!.timezone))}",
+
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -180,16 +190,17 @@ class _HomePageState extends State<HomePage> {
                                 "https://openweathermap.org/img/wn/${weatherdetails.weatherdatas!.weather[0].icon}@2x.png",
                                 height: 90,
                                 width: 90,
-                                color: Color.fromARGB(255, 113, 109, 109),
+                                color: const Color.fromARGB(255, 113, 109, 109),
                               ),
                               // const SizedBox(
                               //   height: 10,
                               // ),
+
                               Text(
-                                "${weatherdetails.weatherdatas!.main.temp}\u00B0c",
+                                "${convertToFahrenheit(weatherdetails.weatherdatas!.main.temp)}\u00B0c",
                                 style: const TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -295,10 +306,7 @@ class _HomePageState extends State<HomePage> {
                                                 const SizedBox(height: 8),
                                                 Center(
                                                   child: Text(
-                                                    currentDayForecast[index]
-                                                        .main
-                                                        .temp
-                                                        .toString(),
+                                                    "${convertToFahrenheit(currentDayForecast[index].main.temp)} \u00B0C",
                                                     style: const TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
@@ -311,10 +319,6 @@ class _HomePageState extends State<HomePage> {
                                                   height: 42,
                                                   width: 45,
                                                 ),
-                                                //Text(wea)
-
-                                                // Text("raining"),
-                                                //Icon(QWeatherIcons.tag_rainfall_advisory.iconData)
                                               ],
                                             ),
                                           ),

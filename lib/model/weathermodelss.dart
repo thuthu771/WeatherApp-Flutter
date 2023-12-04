@@ -91,7 +91,7 @@ class Clouds {
 }
 
 class Coord {
-  final double lon;
+  final double lon; //dbl
   final double lat;
 
   Coord({
@@ -155,8 +155,8 @@ class Main {
 }
 
 class Sys {
-  final int type;
-  final int id;
+  final int? type; //int
+  final int? id;
   final String country;
   final int sunrise;
   final int sunset;

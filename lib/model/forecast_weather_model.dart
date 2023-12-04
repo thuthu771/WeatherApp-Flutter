@@ -138,6 +138,8 @@ class Main {
   });
 
   factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
+
+  get formattedTemperature => null;
   Map<String, dynamic> toJson() => _$MainToJson(this);
 }
 
